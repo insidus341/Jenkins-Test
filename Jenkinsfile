@@ -11,5 +11,9 @@ pipeline {
     echo "HELLO"
    }
   }
+  stage ('Lint 22') {
+   steps {
+    echo "HELLO"
+   }
  }
 }
