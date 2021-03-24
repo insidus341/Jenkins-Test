@@ -9,6 +9,7 @@ pipeline {
   stage ('Lint') {
    steps {
     echo $TEST_SECRET
+    echo "HELLO"
    }
   }
  }
