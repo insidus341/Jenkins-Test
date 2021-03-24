@@ -17,7 +17,7 @@ pipeline {
    }
    
    steps {
-    echo "hello build
+    echo "hello build"
     sh 'echo $CUSTOM_ENV'
    }
   }
