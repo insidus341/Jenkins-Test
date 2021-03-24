@@ -1,4 +1,4 @@
 import time
+import os
 
-time.sleep(20)
-exit(1)
+print("this is a test")
