@@ -8,8 +8,8 @@ pipeline {
  stages {
   stage ('Lint') {
    steps {
-    echo $TEST_SECRET
     echo "HELLO"
+    echo "${TEST_SECRET}"
    }
   }
  }
