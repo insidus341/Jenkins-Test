@@ -15,6 +15,8 @@ pipeline {
    agent {
     dockerfile true
    }
+  }
+  stage ('Test') {
    steps {
     sh 'echo $CUSTOM_ENV'
    }
