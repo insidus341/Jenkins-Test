@@ -1,4 +1,4 @@
-FROM python:3
+FROM ubuntu
 ENV CUSTOM_ENV="this is my env, hi :)"
 
 WORKDIR /usr/src/app
