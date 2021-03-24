@@ -9,8 +9,5 @@ pipeline {
     stage ('Lint') {
       echo $TEST_SECRET
     }
-    
-    stage ('Build') {
-    }
   }
 }
