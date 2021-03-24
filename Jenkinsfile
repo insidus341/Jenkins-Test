@@ -11,10 +11,5 @@ pipeline {
     echo $TEST_SECRET
    }
   }
-    
-  stage ('Build') {
-   steps {
-   }
-  }
  }
 }
