@@ -1,5 +1,5 @@
 pipeline {
- agent none
+ agent any
  
  environment {
   TEST_SECRET   = credentials("jenkins-test-secret-1")
@@ -8,7 +8,7 @@ pipeline {
  stages {
   stage ('Lint') {
    steps {
-    echo $TEST_SECRET
+    echo "HELLO"
    }
   }
  }
