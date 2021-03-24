@@ -15,9 +15,9 @@ pipeline {
    agent {
     dockerfile true
    }
-  }
-  stage ('Test') {
+   
    steps {
+    echo "hello build
     sh 'echo $CUSTOM_ENV'
    }
   }
