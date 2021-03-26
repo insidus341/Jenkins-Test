@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Lint') {
             steps {
-                sh "pylink **/*.py"
+                sh "pylint **/*.py"
             }
         }
 
