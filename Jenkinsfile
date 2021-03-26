@@ -1,25 +1,27 @@
 pipeline {
- agent any
+    agent {
+        dockerfile {
+            filename 'Dockerfile.build' // Run build in a docker container
+        }
  
- environment {
-  TEST_SECRET   = credentials("jenkins-test-secret-1")
- }
+//  environment {
+//  }
   
- stages {
-  stage ('Lint') {
-   steps {
-    echo "HELLO"
-   }
-  }
-  stage ('Build') {
-   agent {
-    dockerfile true
-   }
-   
-   steps {
-    echo "hello build"
-    sh 'echo $CUSTOM_ENV'
-   }
-  }
- }
+    stages {
+        stage ('Lint') {
+            steps {
+                sh """
+                pylint **/*.py
+                """
+            }
+        }
+
+        stage ('PyTest') {
+            steps {
+                sh """
+                pytest
+                """
+            }
+        }
+    }
 }
