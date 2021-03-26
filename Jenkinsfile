@@ -30,7 +30,7 @@ pipeline {
                 }
                 stage('Test Coverage') {
                     steps {
-                        sh "pytest --cov=app /run"
+                        sh "pytest --cov=run"
                     }
                 }
             }
