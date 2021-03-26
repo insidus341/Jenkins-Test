@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Lint') {
             steps {
-                sh "pylint /app/**/*.py"
-                sh "pylint /tests/**/*.py"
+                sh "pylint **/*.py"
             }
         }
 
