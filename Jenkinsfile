@@ -3,9 +3,7 @@ pipeline {
         dockerfile {
             filename 'Dockerfile.build' // Run build in a docker container
         }
- 
-//  environment {
-//  }
+    }
   
     stages {
         stage ('Lint') {
