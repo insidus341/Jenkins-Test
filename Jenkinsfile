@@ -5,16 +5,34 @@ pipeline {
         }
     }
 
-    stages {
-        stage('Lint') {
-            steps {
-                sh "pylint3 **/*.py"
-            }
-        }
+    // stages {
+    //     stage('Lint') {
+    //         steps {
+    //             sh "pylint3 **/*.py"
+    //         }
+    //     }
 
-        stage('PyTest') {
-            steps {
-                sh "pytest"
+    //     stage('PyTest') {
+    //         steps {
+    //             sh "pytest"
+    //         }
+    //     }
+    }
+
+    stages {
+        stage ('Lint and Test') {
+            parallel {
+                stage('Lint') {
+                    steps {
+                        sh "pylint3 **/*.py"
+                    }
+                }
+
+                stage('PyTest') {
+                    steps {
+                        sh "pytest"
+                    }
+                }
             }
         }
     }

@@ -18,7 +18,3 @@ def test_add_letter_and_number():
     """Test adding one letter and one number against functions.add_two_numbers."""
     with pytest.raises(TypeError):
         functions.add_two_numbers("a", 10)
-
-def test_this_test_will_fail():
-    """This is a test test, it should fail"""
-    assert functions.add_two_numbers(1, 2) == 5
