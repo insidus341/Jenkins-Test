@@ -18,3 +18,7 @@ def test_add_letter_and_number():
     """Test adding one letter and one number against functions.add_two_numbers."""
     with pytest.raises(TypeError):
         functions.add_two_numbers("a", 10)
+
+def test_intentional_failure():
+    """This should fail."""
+    assert functions.add_two_numbers(1, 2) == 5
