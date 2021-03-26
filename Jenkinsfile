@@ -4,21 +4,17 @@ pipeline {
             filename 'Dockerfile.build' // Run build in a docker container
         }
     }
-  
+
     stages {
-        stage ('Lint') {
+        stage('Lint') {
             steps {
-                sh """
-                pylint **/*.py
-                """
+                sh "pylink **/*.py"
             }
         }
 
-        stage ('PyTest') {
+        stage('PyTest') {
             steps {
-                sh """
-                pytest
-                """
+                sh "pytest"
             }
         }
     }
