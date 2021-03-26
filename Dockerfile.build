@@ -4,7 +4,7 @@ RUN apt-get update && apt-get install pylint python3-pip -y
 
 COPY /deployment/requirements.txt /app/deployment/requirements.txt
 
-RUN pip3 install -r deployment/requirements.txt
+RUN pip3 install -r /app/deployment/requirements.txt
 
 WORKDIR /app
 
