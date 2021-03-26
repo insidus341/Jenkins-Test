@@ -17,7 +17,7 @@ pipeline {
     //             sh "pytest"
     //         }
     //     }
-    }
+    // }
 
     stages {
         stage ('Lint and Test') {
