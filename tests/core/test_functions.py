@@ -1,4 +1,4 @@
-import app.core.functions as functions
+import run.core.functions as functions
 
 def test_adding_two_positive_numbers():
     assert functions.add_two_numbers(10, 20) == 30
