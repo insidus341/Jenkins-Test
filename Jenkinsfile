@@ -6,11 +6,7 @@ pipeline {
     }
 
     // stages {
-    //     stage('Lint') {
-    //         steps {
-    //             sh "pylint3 **/*.py"
-    //         }
-    //     }
+    //     
 
     //     stage('PyTest') {
     //         steps {
@@ -20,17 +16,21 @@ pipeline {
     // }
 
     stages {
-        stage ('Lint and Test') {
+        stage('Lint') {
+            steps {
+                sh "pylint3 **/*.py"
+            }
+        }
+        stage ('PyTest') {
             parallel {
-                stage('Lint') {
-                    steps {
-                        sh "pylint3 **/*.py"
-                    }
-                }
-
-                stage('PyTest') {
+                stage('Run PyTest') {
                     steps {
                         sh "pytest"
+                    }
+                }
+                stage('Test Coverage') {
+                    steps {
+                        sh "pytest --cov=run /tests"
                     }
                 }
             }
