@@ -39,6 +39,9 @@ pipeline {
         //         }
         //     }
         // }
+        stage ('Init') {
+            
+        }
         stage('Lint') {
             steps {
                 sh "pylint3 /app/**/*.py"
