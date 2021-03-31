@@ -5,13 +5,13 @@ pipeline {
     }
 
     agent {
-        dockerfile {
-            filename 'Dockerfile.build' // Run build in a docker container
-        }
-        
-        // docker {
-        //     image "python:3.9"
+        // dockerfile {
+        //     filename 'Dockerfile.build' // Run build in a docker container
         // }
+        
+        docker {
+            image "python:3.9"
+        }
     }
 
     stages {
@@ -24,6 +24,7 @@ pipeline {
             steps {
                 script {
                     sh """
+                    su root
                     pwd
                     whoami
                     ls -lsa
