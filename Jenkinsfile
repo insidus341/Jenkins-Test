@@ -38,7 +38,9 @@ pipeline {
 
             steps {
                 // sh "docker build -t $registry ."
-                docker.build registry + ":$BUILD_NUMBER"
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }       
         // stage ('Build') {
