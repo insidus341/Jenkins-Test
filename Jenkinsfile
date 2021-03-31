@@ -15,22 +15,24 @@ pipeline {
     }
 
     stages {
-        // stage ('Checkout') {
-        //     steps {
-        //         checkout scm
-        //     }
-        // }
-        // stage ('Setup') {
-        //     steps {
-        //         sh """
-        //         pwd
-        //         whoami
-        //         ls -lsa
-        //         apt-get update && apt-get install pylint3 python3-pip -y
-        //         pip3 install -r /app/deployment/requirements.txt                
-        //         """
-        //     }
-        // }
+        stage ('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage ('Setup') {
+            steps {
+                script {
+                    sh """
+                    pwd
+                    whoami
+                    ls -lsa
+                    apt-get update && apt-get install pylint3 python3-pip -y
+                    pip3 install -r /app/deployment/requirements.txt                
+                    """
+                }
+            }
+        }
         stage('Lint') {
             steps {
                 sh "pylint3 /app/**/*.py"
