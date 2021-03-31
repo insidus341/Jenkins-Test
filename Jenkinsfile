@@ -4,19 +4,17 @@ pipeline {
         registryCredential = "DockerHub"
     }
 
-    agent any
-
-    // agent {
-    //     dockerfile {
-    //         filename 'Dockerfile.build' // Run build in a docker container
-    //         args '-u root:root'
-    //     }
+    agent {
+        dockerfile {
+            filename 'Dockerfile.build' // Run build in a docker container
+            args '-u root:root'
+        }
         
         // docker {
         //     image "python:3.9"
         //     args '-u root:root'
         // }
-    // }
+    }
 
     stages {
         // stage ('Init') {
@@ -52,14 +50,7 @@ pipeline {
         //         sh 'python3 -V'
         //     }
         // }
-        stage ('Build') {
-            
-            steps {
-                script {
-                    docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }
+
         stage('Lint') {
             steps {
                 sh "pylint3 /app/**/*.py"
@@ -69,7 +60,19 @@ pipeline {
             steps {
                 sh "pytest --cov=run /app/"
             }
-        }            
+        }     
+        stage('Build for Development') {
+            when {
+                branch "development"
+            }
+            agent any
+            
+            steps {
+                script {
+                    docker.build registry + ":$BUILD_NUMBER"
+                }
+            }
+        }       
         // stage ('Build') {
         //     agent any
         //     steps {
