@@ -34,11 +34,11 @@ pipeline {
             // when {
             //     branch "development"
             // }
-            agent any
+            agent none
 
             steps {
-                sh "docker build -t $registry ."
-                // docker.build registry + ":$BUILD_NUMBER"
+                // sh "docker build -t $registry ."
+                docker.build registry + ":$BUILD_NUMBER"
             }
         }       
         // stage ('Build') {
