@@ -11,6 +11,7 @@ pipeline {
         
         docker {
             image "python:3.9"
+            args '-u root:root'
         }
     }
 
@@ -24,7 +25,6 @@ pipeline {
             steps {
                 script {
                     sh """
-                    su root
                     pwd
                     whoami
                     ls -lsa
