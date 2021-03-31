@@ -10,7 +10,7 @@ pipeline {
         // }
         
         docker {
-            image "python:3.7"
+            image "python:3.9"
         }
     }
 
@@ -22,8 +22,10 @@ pipeline {
         }
         stage ('Setup') {
             steps {
-                sh "apt-get update && apt-get install pylint3 python3-pip -y"
-                sh "pip3 install -r /app/deployment/requirements.txt"
+                sh """
+                apt-get update && apt-get install pylint3 python3-pip -y
+                pip3 install -r /app/deployment/requirements.txt                
+                """
             }
         }
         stage('Lint') {
