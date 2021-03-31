@@ -7,7 +7,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.build' // Run build in a docker container
-            args '-u root:root'
+            // args '-u root:root'
         }
     }
 
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 script {
                     sh """
-                    python3 -V
+                    pwd
                     """
                 }
             }
