@@ -22,10 +22,8 @@ pipeline {
         }
         stage ('Setup') {
             steps {
-                script {
-                    sh "sudo apt-get update && apt-get install pylint3 python3-pip -y"
-                    sh "pip3 install -r /app/deployment/requirements.txt"
-                }
+                sh "apt-get update && apt-get install pylint3 python3-pip -y"
+                sh "pip3 install -r /app/deployment/requirements.txt"
             }
         }
         stage('Lint') {
