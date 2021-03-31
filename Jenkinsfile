@@ -31,13 +31,14 @@ pipeline {
         }  
 
         stage('Build for Development') {
-            when {
-                branch "development"
-            }
-            agent node
+            // when {
+            //     branch "development"
+            // }
+            agent any
 
             steps {
-                docker.build registry + ":$BUILD_NUMBER"
+                sh "docker build -t $registry ."
+                // docker.build registry + ":$BUILD_NUMBER"
             }
         }       
         // stage ('Build') {
