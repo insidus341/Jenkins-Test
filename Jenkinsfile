@@ -65,13 +65,16 @@ pipeline {
             when {
                 branch "main"
             }
-            agent any
-
             steps {
-                script {
-                    docker.build registry + ":$BUILD_NUMBER"
-                }
+                sh 'ls'
             }
+            // agent any
+
+            // steps {
+            //     script {
+            //         docker.build registry + ":$BUILD_NUMBER"
+            //     }
+            // }
         }       
         // stage ('Build') {
         //     agent any
