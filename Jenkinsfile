@@ -7,6 +7,7 @@ pipeline {
     agent {
         dockerfile {
             filename 'Dockerfile.build' // Run build in a docker container
+            args "-u root"
             // args '-u root:root'
         }
     }
