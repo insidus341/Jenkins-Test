@@ -4,6 +4,8 @@ pipeline {
         registryCredential = "DockerHub"
     }
 
+    agent any
+
     // agent {
     //     dockerfile {
     //         filename 'Dockerfile.build' // Run build in a docker container
@@ -51,7 +53,7 @@ pipeline {
         //     }
         // }
         stage ('Build') {
-            agent any
+            
             steps {
                 script {
                     docker.build registry + ":$BUILD_NUMBER"
