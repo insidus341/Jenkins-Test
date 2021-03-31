@@ -14,7 +14,11 @@ pipeline {
     stages {        
         stage ('Init') {
             steps {
-                sh 'python3 -V'
+                script {
+                    sh """
+                    python3 -V
+                    """
+                }
             }
         }
 
