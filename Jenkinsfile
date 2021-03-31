@@ -16,21 +16,25 @@ pipeline {
     }
 
     stages {
+        stage ('Init') {
+            steps {
+                script {
+                    sh "apt-get update && apt-get install pylint3 python3-pip -y"
+                }
+            }
+        }
         stage ('Checkout') {
             steps {
                 checkout scm
+                script {
+                    sh "ls -lsa"
+                }
             }
         }
-        stage ('Setup') {
+        stage ('Install Dependencies') {
             steps {
                 script {
-                    sh """
-                    pwd
-                    whoami
-                    ls -lsa
-                    apt-get update && apt-get install pylint3 python3-pip -y
-                    pip3 install -r /app/deployment/requirements.txt                
-                    """
+                    sh "pip3 install -r /deployment/requirements.txt"
                 }
             }
         }
