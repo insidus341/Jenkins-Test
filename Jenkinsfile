@@ -40,7 +40,9 @@ pipeline {
         //     }
         // }
         stage ('Init') {
-            
+            steps {
+                sh 'python3 -V'
+            }
         }
         stage('Lint') {
             steps {
