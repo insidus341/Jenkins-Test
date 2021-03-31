@@ -39,17 +39,17 @@ pipeline {
         //         }
         //     }
         // }
-        // stage ('Init') {
-        //     agent {
-        //         dockerfile {
-        //             filename 'Dockerfile.build' // Run build in a docker container
-        //             args '-u root:root'
-        //         }
-        //     }
-        //     steps {
-        //         sh 'python3 -V'
-        //     }
-        // }
+        stage ('Init') {
+            // agent {
+            //     dockerfile {
+            //         filename 'Dockerfile.build' // Run build in a docker container
+            //         args '-u root:root'
+            //     }
+            // }
+            steps {
+                sh 'python3 -V'
+            }
+        }
 
         stage('Lint') {
             steps {
@@ -63,10 +63,10 @@ pipeline {
         }     
         stage('Build for Development') {
             when {
-                branch "development"
+                branch "main"
             }
             agent any
-            
+
             steps {
                 script {
                     docker.build registry + ":$BUILD_NUMBER"
