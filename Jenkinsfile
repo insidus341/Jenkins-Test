@@ -10,7 +10,7 @@ pipeline {
         // }
         
         docker {
-            image "python:3.8"
+            image "python:3.7"
         }
     }
 
