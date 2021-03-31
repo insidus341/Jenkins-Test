@@ -14,7 +14,7 @@ pipeline {
         //     image "python:3.9"
         //     args '-u root:root'
         // }
-    }
+    // }
 
     stages {
         // stage ('Init') {
