@@ -60,17 +60,26 @@ pipeline {
         }
 
         stage('Run Docker Image') {
+            agent {
+                docker {
+                    registry + ":$BUILD_NUMBER"
+                }
+            }
             steps {
                 script {
+                    sh "ls -lsa"
+                    sh "ls -lsa run/"
+                    sh "pwd"
+                    sh "sleep 5; cat /app/output.txt"
                     // docker_app.inside {
                     //     sh "sleep 5; cat /app/output.txt"
                     // }
-                    docker.image(registry + ":$BUILD_NUMBER").inside {
-                        sh "ls -lsa"
-                        sh "ls -lsa run/"
-                        sh "pwd"
-                        sh "sleep 5; cat /app/output.txt"
-                    }
+                    // docker.image(registry + ":$BUILD_NUMBER").inside {
+                    //     sh "ls -lsa"
+                    //     sh "ls -lsa run/"
+                    //     sh "pwd"
+                    //     sh "sleep 5; cat /app/output.txt"
+                    // }
                 }
             }
         }
