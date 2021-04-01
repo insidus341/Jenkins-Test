@@ -1,5 +1,5 @@
 """Test the functions.py file."""
-import run.core.functions as functions
+from app.core import functions
 import pytest
 
 def test_adding_two_positive_numbers():

@@ -4,23 +4,15 @@ pipeline {
         registryCredential = "DockerHub"
     }
 
+    // Run test steps in a docker container
     agent {
         dockerfile {
-            filename 'Dockerfile.build' // Run build in a docker container
+            filename 'Dockerfile.build' 
             args "-u root"
-            // args '-u root:root'
         }
-        
-        // docker {
-        //     image "python:3.9"
-        // }
     }
 
-    // agent any
-
     stages {  
-        // def app
-              
         stage ('Init') {
             steps {
                 script {
@@ -63,7 +55,6 @@ pipeline {
             steps {
                 script {
                     docker.image(registry + ":$BUILD_NUMBER").withRun('-u root --entrypoint /bin/bash') {
-                    // docker.image(registry + ":$BUILD_NUMBER").inside {
                         sh "python3 -m run.app &"
                         sh "sleep 5; cat output.txt"
                     }

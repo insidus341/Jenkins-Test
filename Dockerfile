@@ -8,8 +8,8 @@ RUN pip3 install -r /app/deployment/requirements.txt
 
 WORKDIR /app
 
-COPY . .
+COPY /app .
 
-CMD ["python3", "-m", "run.app"]
+WORKDIR /app
 
-# ENTRYPOINT ["python3"]
+CMD ["python3", "app.py"]

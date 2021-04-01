@@ -1,7 +1,7 @@
 """Lets goooooo."""
 import os
 import time
-import run.core.functions as functions
+import core.functions as functions
 
 SUMMAGE = functions.add_two_numbers(40, 2)
 FILE = os.getcwd() + "/output.txt"
