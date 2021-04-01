@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // sh "docker build -t $registry ."
                 script {
-                    docker.build registry + ":$BUILD_NUMBER"
+                    def docker_image = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
@@ -66,13 +66,13 @@ pipeline {
                 }
             }
         }
-        // stage ('Build') {
-        //     agent any
-        //     steps {
-        //         script {
-        //             docker.build registry + ":$BUILD_NUMBER"
-        //         }
-        //     }
-        // }
+
+        stage ('Push container to Docker Hub') {
+            steps {
+                script {
+                    docker_image.push()
+                }
+            }
+        }
     }
 }
