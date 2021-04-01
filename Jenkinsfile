@@ -43,9 +43,11 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            // when {
-
-            // }
+            when {
+                expression {
+                    (env.CHANGE_ID && env.BRANCH_NAME.startsWith("PR-")) || env.BRANCH_NAME == development_branch || env.BRANCH_NAME == main_branch
+                }
+            }
 
             steps {
                 // sh "docker build -t $registry ."
