@@ -67,6 +67,7 @@ pipeline {
                     // }
                     docker.image(registry + ":$BUILD_NUMBER").inside {
                         sh "ls -lsa"
+                        sh "ls -lsa run/"
                         sh "pwd"
                         sh "sleep 5; cat /app/output.txt"
                     }
