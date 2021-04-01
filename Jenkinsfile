@@ -55,10 +55,10 @@ pipeline {
             }
         }
 
-        stage('Run Docker Image (Pull request)') {
+        stage('Run Docker Image') {
             when {
                 expression {
-                    env.CHANGE_ID && env.BRANCH_NAME.startsWith("PR-")
+                    (env.CHANGE_ID && env.BRANCH_NAME.startsWith("PR-")) || env.BRANCH_NAME == development_branch || env.BRANCH_NAME == main_branch
                 }
             }
 
@@ -77,10 +77,10 @@ pipeline {
             }
         }
 
-        stage ('Push container to Docker Hub (Development)') {
+        stage ('Push container to Docker Hub') {
             when {
                 expression {
-                    env.BRANCH_NAME == development_branch
+                    env.BRANCH_NAME == development_branch || env.BRANCH_NAME == main_branch
                 }
             }
 
