@@ -21,7 +21,7 @@ pipeline {
                     """
                 }
                 echo "CHANGE_ID = ${env.CHANGE_ID}"
-                echo "BRANCH_NAME = env.BRANCH_NAME}"
+                echo "BRANCH_NAME = ${env.BRANCH_NAME}"
             }
         }
 
