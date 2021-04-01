@@ -13,6 +13,8 @@ pipeline {
     }
 
     stages {  
+        def docker_image
+        
         stage ('Init') {
             steps {
                 script {
@@ -46,7 +48,7 @@ pipeline {
             steps {
                 // sh "docker build -t $registry ."
                 script {
-                    def docker_image = docker.build registry + ":$BUILD_NUMBER"
+                    docker_image = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
