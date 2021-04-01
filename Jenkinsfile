@@ -10,6 +10,11 @@ pipeline {
             args "-u root"
             // args '-u root:root'
         }
+        agent {
+            docker {
+                iamge "python:3.9"
+            }
+        }
     }
 
     stages {        
