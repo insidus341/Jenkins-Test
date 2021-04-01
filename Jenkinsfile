@@ -5,15 +5,14 @@ pipeline {
     // }
 
     agent {
-        dockerfile {
-            filename 'Dockerfile.build' // Run build in a docker container
-            args "-u root"
-            // args '-u root:root'
-        }
-        agent {
-            docker {
-                iamge "python:3.9"
-            }
+        // dockerfile {
+        //     filename 'Dockerfile.build' // Run build in a docker container
+        //     args "-u root"
+        //     // args '-u root:root'
+        // }
+        
+        docker {
+            iamge "python:3.9"
         }
     }
 
