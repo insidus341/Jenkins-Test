@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // sh "docker build -t $registry ."
                 script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build registry + ":beta-$BUILD_NUMBER"
                 }
             }
         }
@@ -54,7 +54,7 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    docker.image(registry + ":$BUILD_NUMBER").inside {
+                    dockerImage.inside {
                         sh """
                         cd app/
                         pwd
@@ -72,7 +72,7 @@ pipeline {
                 script {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
-                        dockerImage.push("latest")
+                        dockerImage.push("beta")
                     }
                     // docker.image(registry + ":$BUILD_NUMBER").push()
                 }
