@@ -54,7 +54,7 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    docker.image(registry + ":$BUILD_NUMBER").withRun('-u root --entrypoint /bin/bash') {
+                    docker.image(registry + ":$BUILD_NUMBER").inside {
                         sh """
                         cd app/
                         pwd
