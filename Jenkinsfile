@@ -29,17 +29,20 @@ pipeline {
             }
         }
 
-        stage('Lint') {
-            steps {
-                sh "pylint3 /app/**/*.py"
+        stage('Lint and run tests') {
+            parallel {
+                stage ('PyLint') {
+                    steps {
+                        sh "pylint3 /app/**/*.py"
+                    }
+                }
+                stage('Run Tests') {
+                    steps {
+                        sh "pytest --cov=run /app/"
+                    }
+                }
             }
         }
-
-        stage('Run Tests') {
-            steps {
-                sh "pytest --cov=run /app/"
-            }
-        }  
 
         stage('Build Docker Image') {
             // when {
