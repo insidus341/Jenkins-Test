@@ -60,6 +60,7 @@ pipeline {
                         pwd
                         ls -lsa
                         python3 app.py &
+                        sleep 5; cat output.txt
                         """
                         sh "pwd"
                         sh "ls -lsa"
