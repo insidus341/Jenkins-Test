@@ -51,7 +51,7 @@ pipeline {
             }
         }
 
-        stage('Run Docker Image') {
+        stage('Run Docker Image (Pull request)') {
             when {
                 env.CHANGE_ID != null
             }
@@ -71,7 +71,7 @@ pipeline {
             }
         }
 
-        stage ('Push container to Docker Hub') {
+        stage ('Push container to Docker Hub (Development)') {
             when {
                 env.BRANCH_NAME == "development"
             }
