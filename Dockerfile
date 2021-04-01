@@ -10,6 +10,6 @@ WORKDIR /app
 
 COPY . .
 
-CMD ["-m", "run.app"]
+CMD ["python3", "-m", "run.app"]
 
-ENTRYPOINT ["python3"]
+# ENTRYPOINT ["python3"]
