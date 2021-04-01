@@ -64,8 +64,8 @@ pipeline {
                 script {
                     docker.image(registry + ":$BUILD_NUMBER").withRun('-u root --entrypoint /bin/bash') {
                     // docker.image(registry + ":$BUILD_NUMBER").inside {
-                        sh "python3 -m app.run &"
-                        sh "sleep 5; cat /app/output.txt"
+                        sh "python3 -m run.app &"
+                        sh "sleep 5; cat output.txt"
                     }
                 }
             }
