@@ -62,9 +62,6 @@ pipeline {
                         python3 app.py &
                         sleep 5; cat output.txt
                         """
-                        sh "pwd"
-                        sh "ls -lsa"
-                        sh "sleep 5; cat output.txt"
                     }
                 }
             }
