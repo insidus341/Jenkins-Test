@@ -4,24 +4,26 @@ pipeline {
     //     registryCredential = "DockerHub"
     // }
 
-    agent {
-        // dockerfile {
-        //     filename 'Dockerfile.build' // Run build in a docker container
-        //     args "-u root"
-        //     // args '-u root:root'
-        // }
+    // agent {
+    //     // dockerfile {
+    //     //     filename 'Dockerfile.build' // Run build in a docker container
+    //     //     args "-u root"
+    //     //     // args '-u root:root'
+    //     // }
         
-        docker {
-            image "python:3.9"
-        }
-    }
+    //     // docker {
+    //     //     image "python:3.9"
+    //     // }
+    // }
+
+    agent any
 
     stages {        
         stage ('Init') {
             steps {
                 script {
                     sh """
-                    pwd
+                    python -V
                     """
                 }
             }
@@ -43,7 +45,6 @@ pipeline {
             // when {
             //     branch "development"
             // }
-            agent none
 
             steps {
                 // sh "docker build -t $registry ."
