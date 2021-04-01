@@ -39,9 +39,9 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            // when {
-            //     branch "development"
-            // }
+            when {
+
+            }
 
             steps {
                 // sh "docker build -t $registry ."
@@ -52,6 +52,10 @@ pipeline {
         }
 
         stage('Run Docker Image') {
+            when {
+                env.CHANGE_ID != null
+            }
+
             steps {
                 script {
                     dockerImage.inside {
@@ -68,6 +72,10 @@ pipeline {
         }
 
         stage ('Push container to Docker Hub') {
+            when {
+                env.BRANCH_NAME == "development"
+            }
+
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
