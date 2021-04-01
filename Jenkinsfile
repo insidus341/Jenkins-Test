@@ -58,7 +58,7 @@ pipeline {
             steps {
                 script {
                     docker.image(registry + ":$BUILD_NUMBER").inside {
-                        sh "python -V"
+                        sh "cat output.txt"
                     }
                 }
             }
