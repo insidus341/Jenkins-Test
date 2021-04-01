@@ -19,8 +19,8 @@ pipeline {
     // agent any
 
     stages {  
-        def app
-
+        // def app
+              
         stage ('Init') {
             steps {
                 script {
@@ -54,21 +54,18 @@ pipeline {
             steps {
                 // sh "docker build -t $registry ."
                 script {
-                    app = docker.build registry + ":$BUILD_NUMBER"
+                    docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
 
         stage('Run Docker Image') {
             steps {
-                // script {
-                app.inside {
-                    sh "cat /app/output.txt"
+                script {
+                    docker.image(registry + ":$BUILD_NUMBER").inside {
+                        sh "cat /app/output.txt"
+                    }
                 }
-                    // docker.image(registry + ":$BUILD_NUMBER").inside {
-                    //     sh "cat /app/output.txt"
-                    // }
-                // }
             }
         }
         // stage ('Build') {
