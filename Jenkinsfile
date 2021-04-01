@@ -62,10 +62,8 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    def docker_app
-                    docker_app = docker.image(registry + ":$BUILD_NUMBER").run()
+                    docker.image(registry + ":$BUILD_NUMBER").withRun('-u root --entrypoint /bin/bash') {
                     // docker.image(registry + ":$BUILD_NUMBER").inside {
-                    docker_app.inside {
                         sh "ls -lsa"
                         sh "ls -lsa run/"
                         sh "ls -lsa /"
