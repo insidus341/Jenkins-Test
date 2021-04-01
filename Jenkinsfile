@@ -73,7 +73,9 @@ pipeline {
 
         stage ('Push container to Docker Hub (Development)') {
             when {
-                branch "development"
+                expression {
+                    env.CHANGE_ID && env.BRANCH_NAME.startsWith("PR-")
+                }
             }
 
             steps {
