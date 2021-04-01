@@ -23,7 +23,7 @@ pipeline {
             }
         }
 
-        stage('Lint and Unittests') {
+        stage('Lint and Test') {
             parallel {
                 stage ('PyLint') {
                     steps {
