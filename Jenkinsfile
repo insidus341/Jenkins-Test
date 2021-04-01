@@ -31,14 +31,14 @@ pipeline {
             }
         }
 
-        stage('Lint and run tests') {
+        stage('Lint and Unittests') {
             parallel {
                 stage ('PyLint') {
                     steps {
                         sh "pylint3 /app/**/*.py"
                     }
                 }
-                stage('Run Tests') {
+                stage('PyTest') {
                     steps {
                         sh "pytest --cov=run /app/"
                     }
@@ -63,10 +63,6 @@ pipeline {
             steps {
                 script {
                     docker.image(registry + ":$BUILD_NUMBER").run()
-                    
-                    docker_app.inside {
-                        sh "sleep 5; cat /app/output.txt"
-                    }
                     docker.image(registry + ":$BUILD_NUMBER").inside {
                         sh "ls -lsa"
                         sh "ls -lsa run/"
