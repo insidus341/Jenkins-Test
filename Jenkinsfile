@@ -50,7 +50,6 @@ pipeline {
             }
 
             steps {
-                // sh "docker build -t $registry ."
                 script {
                     dockerImage = docker.build registry + ":beta-$BUILD_NUMBER"
                 }
@@ -88,11 +87,19 @@ pipeline {
 
             steps {
                 script {
-                    docker.withRegistry('', registryCredential) {
-                        dockerImage.push()
-                        dockerImage.push("beta")
+                    if (env.BRANCH_NAME == development_branch) {
+                        docker.withRegistry('', registryCredential) {
+                            dockerImage.push("beta-$BUILD_NUMBER")
+                            dockerImage.push("beta")
+                        }
                     }
-                    // docker.image(registry + ":$BUILD_NUMBER").push()
+
+                    if (env.BRANCH_NAME == main_branch) {
+                        docker.withRegistry('', registryCredential) {
+                            dockerImage.push("$BUILD_NUMBER")
+                            dockerImage.push("latest")
+                        }
+                    }
                 }
             }
         }
