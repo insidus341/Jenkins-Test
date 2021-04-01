@@ -57,6 +57,8 @@ pipeline {
                     docker.image(registry + ":$BUILD_NUMBER").withRun('-u root --entrypoint /bin/bash') {
                         sh """
                         cd app/
+                        pwd
+                        ls -lsa
                         python3 app.py &
                         """
                         sh "pwd"
