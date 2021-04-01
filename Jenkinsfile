@@ -2,6 +2,8 @@ pipeline {
     environment{
         registry = "insidus341/jenkins_test"
         registryCredential = "DockerHub"
+        main_branch = "main"
+        development_branch = "development"
     }
 
     // Run test steps in a docker container
@@ -76,6 +78,12 @@ pipeline {
         }
 
         stage ('Push container to Docker Hub (Development)') {
+            when {
+                expression {
+                    env.BRANCH_NAME == development_branch
+                }
+            }
+
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
