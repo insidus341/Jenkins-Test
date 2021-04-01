@@ -1,7 +1,7 @@
 pipeline {
     environment{
         registry = "insidus341/jenkins_test"
-        registryCredential = "DockerHub"
+        registryCredential = `DockerHub`
     }
 
     // Run test steps in a docker container
