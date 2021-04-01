@@ -1,7 +1,7 @@
 pipeline {
     environment{
         registry = "insidus341/jenkins_test"
-        registryCredential = `DockerHub`
+        registryCredential = "DockerHub"
     }
 
     // Run test steps in a docker container
@@ -46,7 +46,7 @@ pipeline {
             steps {
                 // sh "docker build -t $registry ."
                 script {
-                    docker.build registry + ":$BUILD_NUMBER"
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
@@ -70,7 +70,10 @@ pipeline {
         stage ('Push container to Docker Hub') {
             steps {
                 script {
-                    docker.image(registry + ":$BUILD_NUMBER").push()
+                    docker.withRegistry('', registryCredential) {
+                        dockerImage.push()
+                    }
+                    // docker.image(registry + ":$BUILD_NUMBER").push()
                 }
             }
         }
