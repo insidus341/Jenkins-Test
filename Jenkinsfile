@@ -1,65 +1,26 @@
 pipeline {
-    // environment{
-    //     registry = "insidus341/jenkins_test"
-    //     registryCredential = "DockerHub"
-    // }
-
-    // agent {
-    //     // dockerfile {
-    //     //     filename 'Dockerfile.build' // Run build in a docker container
-    //     //     args "-u root"
-    //     //     // args '-u root:root'
-    //     // }
-        
-    //     // docker {
-    //     //     image "python:3.9"
-    //     // }
-    // }
-
+    def app
     agent any
 
-    stages {        
-        stage ('Init') {
-            steps {
-                script {
-                    sh """
-                    python -V
-                    """
-                }
-            }
+    stages {
+        stage('Clone respositry') {
+            checkout svm
         }
 
-        stage('Lint') {
-            steps {
-                sh "pylint3 /app/**/*.py"
+        stage('Build image') {
+            app = docker.build("insidus341/jenkins-test")
+        }
+
+        stage('Run Pylint3') {
+            app.inside {
+                sh "pylint3 **/*.py"
             }
         }
 
         stage('Run Tests') {
-            steps {
-                sh "pytest --cov=run /app/"
+            app.inside {
+                sh "pytest --cov=run"
             }
-        }  
-
-        stage('Build for Development') {
-            // when {
-            //     branch "development"
-            // }
-
-            steps {
-                // sh "docker build -t $registry ."
-                script {
-                    docker.build registry + ":$BUILD_NUMBER"
-                }
-            }
-        }       
-        // stage ('Build') {
-        //     agent any
-        //     steps {
-        //         script {
-        //             docker.build registry + ":$BUILD_NUMBER"
-        //         }
-        //     }
-        // }
+        } 
     }
 }
