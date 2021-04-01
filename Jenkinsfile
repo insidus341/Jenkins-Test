@@ -62,7 +62,7 @@ pipeline {
         stage('Run Docker Image') {
             agent {
                 docker {
-                    registry + ":$BUILD_NUMBER"
+                    image registry + ":$BUILD_NUMBER"
                 }
             }
             steps {
