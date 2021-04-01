@@ -1,4 +1,4 @@
-if (env.BRANCH_NAME == "main") {
+if (env.BRANCH_NAME == "jenkins_file_tests") {
     pipeline {
         environment{
             registry = "insidus341/jenkins_test"
