@@ -54,8 +54,7 @@ pipeline {
             steps {
                 // sh "docker build -t $registry ."
                 script {
-                    def docker_app
-                    docker_app = docker.build registry + ":$BUILD_NUMBER"
+                    docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }
@@ -63,12 +62,14 @@ pipeline {
         stage('Run Docker Image') {
             steps {
                 script {
-                    docker_app.inside {
+                    // docker_app.inside {
+                    //     sh "sleep 5; cat /app/output.txt"
+                    // }
+                    docker.image(registry + ":$BUILD_NUMBER").inside {
+                        sh "ls -lsa"
+                        sh "pwd"
                         sh "sleep 5; cat /app/output.txt"
                     }
-                    // docker.image(registry + ":$BUILD_NUMBER").inside {
-                    //     sh "cat /app/output.txt"
-                    // }
                 }
             }
         }
