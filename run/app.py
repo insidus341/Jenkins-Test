@@ -3,14 +3,14 @@ import os
 import time
 import run.core.functions as functions
 
-summage = functions.add_two_numbers(40, 2)
+SUMMAGE = functions.add_two_numbers(40, 2)
+FILE = os.getcwd() + "/output.txt"
 
-file = os.getcwd() + "/output.txt"
 try:
-    with open(file, "w") as f:
-        f.write(str(summage))
+    with open(FILE, "w") as f:
+        f.write(str(SUMMAGE))
 
-except Exception as e:
-    print(e)
+except Exception: 
+    print("There was an error")
 
 time.sleep(60)
