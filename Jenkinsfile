@@ -39,9 +39,9 @@ pipeline {
         }
 
         stage('Build Docker Image') {
-            when {
+            // when {
 
-            }
+            // }
 
             steps {
                 // sh "docker build -t $registry ."
@@ -52,9 +52,11 @@ pipeline {
         }
 
         stage('Run Docker Image (Pull request)') {
-            // when {
-            //     env.CHANGE_ID != null
-            // }
+            when {
+                expression {
+                    env.CHANGE_ID && env.BRANCH_NAME.startsWith("PR-")
+                }
+            }
 
             steps {
                 script {
@@ -72,12 +74,6 @@ pipeline {
         }
 
         stage ('Push container to Docker Hub (Development)') {
-            when {
-                expression {
-                    env.CHANGE_ID && env.BRANCH_NAME.startsWith("PR-")
-                }
-            }
-
             steps {
                 script {
                     docker.withRegistry('', registryCredential) {
