@@ -41,7 +41,7 @@ pipeline {
             }
         }  
 
-        stage('Build for Development') {
+        stage('Build Docker Image') {
             // when {
             //     branch "development"
             // }
@@ -52,7 +52,17 @@ pipeline {
                     docker.build registry + ":$BUILD_NUMBER"
                 }
             }
-        }       
+        }
+
+        stage('Run Docker Image') {
+            steps {
+                script {
+                    docker.image(registry + ":$BUILD_NUMBER").inside {
+                        sh "python -V"
+                    }
+                }
+            }
+        }
         // stage ('Build') {
         //     agent any
         //     steps {
