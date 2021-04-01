@@ -10,7 +10,7 @@ try:
     with open(FILE, "w") as f:
         f.write(str(SUMMAGE))
 
-except Exception: 
+except FileNotFoundError:
     print("There was an error")
 
 time.sleep(60)
