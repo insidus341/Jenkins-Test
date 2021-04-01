@@ -1,8 +1,8 @@
 pipeline {
-    environment{
-        registry = "insidus341/jenkins_test"
-        registryCredential = "DockerHub"
-    }
+    // environment{
+    //     registry = "insidus341/jenkins_test"
+    //     registryCredential = "DockerHub"
+    // }
 
     agent {
         dockerfile {
