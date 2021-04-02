@@ -11,6 +11,7 @@ pipeline {
     // Run test steps in a docker container
     agent {
         dockerfile {
+            // filename 'Dockerfile.build' 
             filename 'Dockerfile.build' 
             args "-u root"
         }
