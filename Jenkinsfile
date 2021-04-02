@@ -79,12 +79,6 @@ pipeline {
         }
 
         stage ('Push to Docker Hub') {
-            when {
-                expression {
-                    env.BRANCH_NAME == development_branch || env.BRANCH_NAME == main_branch
-                }
-            }
-
             parallel {
                 stage ('Pre-Release') {
                     when { expression { env.BRANCH_NAME == development_branch } }
