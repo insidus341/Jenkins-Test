@@ -1,20 +1,19 @@
-if (env.BRANCH_NAME == "jenkins_file_tests") {
-    pipeline {
-        environment{
-            registry = "insidus341/jenkins_test"
-            registryCredential = "DockerHub"
-            main_branch = "main"
-            development_branch = "development"
-        }
+pipeline {
+    environment{
+        registry = "insidus341/jenkins_test"
+        registryCredential = "DockerHub"
+        main_branch = "main"
+        development_branch = "development"
+    }
 
-        // Run test steps in a docker container
-        agent {
-            dockerfile {
-                filename 'Dockerfile.build' 
-                args "-u root"
-            }
+    // Run test steps in a docker container
+    agent {
+        dockerfile {
+            filename 'Dockerfile.build' 
+            args "-u root"
         }
-
+    }
+    if (env.BRANCH_NAME == "jenkins_file_tests") {
         stages {  
             stage ('Init') {
                 steps {
