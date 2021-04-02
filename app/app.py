@@ -13,4 +13,4 @@ try:
 except FileNotFoundError:
     print("There was an error")
 
-time.sleep(60)
+time.sleep(300)
