@@ -24,8 +24,9 @@ pipeline {
                     python -V
                     """
                 }
-                echo "CHANGE_ID = ${env.CHANGE_ID}"
-                echo "BRANCH_NAME = ${env.BRANCH_NAME}"
+                // echo "CHANGE_ID = ${env.CHANGE_ID}"
+                // echo "BRANCH_NAME = ${env.BRANCH_NAME}"
+                echo sh(script: 'env|sort', returnStdout: true)
             }
         }
 
