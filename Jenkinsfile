@@ -107,5 +107,30 @@ pipeline {
                 }
             }
         }
+
+        stage("Deploy") {
+            parallel {
+                stage ("INT") {
+                    when { expression { params.DEPLOY_TO == "INT" } }
+                    steps {
+                        sh "./deploy.sh int"
+                    }
+                }
+
+                stage ("PRE") {
+                    when { expression { params.DEPLOY_TO == "PRE" } }
+                    steps {
+                        sh "./deploy.sh pre"
+                    }
+                }
+
+                stage ("PROD") {
+                    when { expression { params.DEPLOY_TO == "PROD" } }
+                    steps {
+                        sh "./deploy.sh prod"
+                    }
+                }
+            }
+        }
     }
 }
