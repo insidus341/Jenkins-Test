@@ -11,8 +11,7 @@ pipeline {
     // Run test steps in a docker container
     agent {
         dockerfile {
-            // filename 'Dockerfile.build' 
-            filename 'Dockerfile' 
+            filename 'Dockerfile.build' 
             args "-u root"
         }
     }
@@ -23,7 +22,6 @@ pipeline {
                 script {
                     sh """
                     python -V
-                    apt install pylint3
                     """
                 }
                 // echo "CHANGE_ID = ${env.CHANGE_ID}"
