@@ -40,7 +40,7 @@ pipeline {
                 }
                 stage('PyTest') {
                     steps {
-                        sh "pytest --cov=run /app/"
+                        sh "pytest --cov=run app/app.py"
                     }
                 }
             }
