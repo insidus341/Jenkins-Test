@@ -12,7 +12,7 @@ pipeline {
     agent {
         dockerfile {
             // filename 'Dockerfile.build' 
-            filename 'Dockerfile.build' 
+            filename 'Dockerfile' 
             args "-u root"
         }
     }
@@ -40,7 +40,7 @@ pipeline {
                 }
                 stage('PyTest') {
                     steps {
-                        sh "pytest --cov=app"
+                        sh "pytest --cov=app --junit-xml=out.xml"
                     }
                 }
             }
@@ -70,12 +70,18 @@ pipeline {
             steps {
                 script {
                     dockerImage.inside {
+                        // sh """
+                        // cd app/
+                        // pwd
+                        // ls -lsa
+                        // python3 app.py &
+                        // sleep 5; cat output.txt
+                        // """
                         sh """
                         cd app/
                         pwd
                         ls -lsa
-                        python3 app.py &
-                        sleep 5; cat output.txt
+                        cat output.txt
                         """
                     }
                 }
