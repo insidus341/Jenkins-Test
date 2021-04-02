@@ -1,3 +1,5 @@
+// https://michakutz.medium.com/conditionals-in-a-declarative-pipeline-jenkinsfile-d1a4a44e93bb
+
 pipeline {
     environment{
         registry = "insidus341/jenkins_test"
