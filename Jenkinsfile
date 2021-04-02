@@ -40,7 +40,7 @@ pipeline {
                 stage('PyTest') {
                     steps {
                         sh "pytest --cov=app --junit-xml=pytests_out.xml"
-                        junit "pytests_out.xml"
+                        // junit "pytests_out.xml"
                     }
                 }
             }
