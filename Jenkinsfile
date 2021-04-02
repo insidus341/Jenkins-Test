@@ -23,6 +23,7 @@ pipeline {
                 script {
                     sh """
                     python -V
+                    apt install pylint3
                     """
                 }
                 // echo "CHANGE_ID = ${env.CHANGE_ID}"
